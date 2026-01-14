@@ -7,7 +7,12 @@ const config = {
 	// for more information about preprocessors
 	preprocess: vitePreprocess(),
 
-	kit: { adapter: adapter() }
+	kit: { 
+		adapter: adapter(),
+		prerender: {
+			handleHttpError: 'warn' // Skip 404 errors for missing pages
+		}
+	}
 };
 
 export default config;
