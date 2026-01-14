@@ -10,7 +10,8 @@ const config = {
 	kit: { 
 		adapter: adapter(),
 		prerender: {
-			handleHttpError: 'warn' // Skip 404 errors for missing pages
+			handleHttpError: 'warn', // Skip 404 errors for missing pages
+			handleMissingId: 'warn' // Skip missing anchor ID errors
 		}
 	}
 };
