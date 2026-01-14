@@ -1,0 +1,70 @@
+@import url('https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@300,400,500,700,900&display=swap');
+
+@import "tailwindcss";
+
+/* Custom Font Families */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-family-clash: 'Clash Display', sans-serif;
+  --font-family-satoshi: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  
+  /* DevRaj Color Palette */
+  --color-lime: 190 242 100;
+  --color-charcoal: 11 11 13;
+  --color-text-primary: 246 247 255;
+  --color-text-secondary: 169 169 189;
+}
+
+/* Font Utility Classes */
+.font-clash {
+  font-family: 'Clash Display', sans-serif;
+}
+
+.font-satoshi {
+  font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+}
+
+body {
+  font-family: 'Satoshi', ui-sans-serif, system-ui, sans-serif;
+  background-color: white;
+  color: rgb(23, 23, 23);
+  transition: background-color 0.3s, color 0.3s;
+  position: relative;
+}
+
+body.dark {
+  background-color: rgb(11, 11, 13);
+  color: rgb(246, 247, 255);
+}
+
+/* Blue Radial Glow Effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(59, 130, 246, 0.15),
+    transparent 50%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+body.dark::before {
+  background: radial-gradient(
+    ellipse 80% 50% at 50% -20%,
+    rgba(59, 130, 246, 0.15),
+    transparent 50%
+  );
+}
+
+/* Ensure content is above the glow */
+body > * {
+  position: relative;
+  z-index: 1;
+}
