@@ -5,6 +5,7 @@
   import Footer from '$lib/components/footer.svelte';
   import { onMount } from 'svelte';
   import { Hand } from 'lucide-svelte';
+  import SpotifyBubble from '$lib/components/spotify-bubble.svelte';
   
   // Bio descriptions for typing animation
   const bioPhrases = [
@@ -32,6 +33,9 @@
         <Hand size={20} strokeWidth={2.5} />
       </div>
       <p class="font-medium text-base tracking-wide">Hi, I'm Angga.</p>
+      
+      <!-- Spotify Status Bubble -->
+      <SpotifyBubble />
     </div>
 
     <!-- Big Headline -->

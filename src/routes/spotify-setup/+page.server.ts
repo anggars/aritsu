@@ -36,7 +36,7 @@ export const load = async ({ url }) => {
 
 export const actions = {
   login: async () => {
-    const scope = 'user-read-recently-played user-top-read';
+    const scope = 'user-read-recently-played user-top-read user-read-currently-playing user-read-playback-state';
     const state = Math.random().toString(36).substring(7);
 
     const params = new URLSearchParams({
