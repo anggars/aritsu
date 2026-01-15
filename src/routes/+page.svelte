@@ -28,14 +28,19 @@
   <section class="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 max-w-[1400px] mx-auto pt-32 pb-20">
     
     <!-- Greeting -->
-    <div class="mb-8 flex items-center gap-3 text-zinc-500 dark:text-[#A9A9BD] transform transition-all duration-700 delay-100 {loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
-      <div class="animate-wave origin-[70%_70%] text-lime-600 dark:text-[#BEF264]">
-        <Hand size={20} strokeWidth={2.5} />
+    <!-- Greeting -->
+    <div class="mb-8 flex flex-col md:flex-row md:items-center gap-3 md:gap-4 text-zinc-500 dark:text-[#A9A9BD] transform transition-all duration-700 delay-100 {loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
+      <div class="flex items-center gap-3">
+        <div class="animate-wave origin-[70%_70%] text-lime-600 dark:text-[#BEF264]">
+          <Hand size={20} strokeWidth={2.5} />
+        </div>
+        <p class="font-medium text-base tracking-wide">Hi, I'm Angga.</p>
       </div>
-      <p class="font-medium text-base tracking-wide">Hi, I'm Angga.</p>
       
       <!-- Spotify Status Bubble -->
-      <SpotifyBubble />
+      <div class="hidden md:block md:ml-0">
+         <SpotifyBubble />
+      </div>
     </div>
 
     <!-- Big Headline -->

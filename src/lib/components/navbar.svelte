@@ -5,6 +5,8 @@
   import { fly, fade, scale } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
   
+  import SpotifyBubble from '$lib/components/spotify-bubble.svelte';
+
   // State
   let scrolled = $state(false);
   let isDark = $state(true);
@@ -55,12 +57,8 @@
 <!-- Navbar Wrapper -->
 <div class="fixed left-0 right-0 top-0 z-100 w-full pt-4 pointer-events-none">
   <!-- Inner Content (pointer-events-auto needed because wrapper is none) -->
-  <!-- Inner Content (pointer-events-auto needed because wrapper is none) -->
   <nav class="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 flex items-center h-16 pointer-events-auto">
     
-    <!-- Dynamic Inner Container -->
-    <!-- Dynamic Inner Container -->
-    <!-- Dynamic Inner Container -->
     <!-- Dynamic Inner Container -->
     <div 
       class="relative flex items-center justify-between mx-auto transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] 
@@ -72,7 +70,7 @@
       <!-- Logo Container -->
       <a
         href="/"
-        class="flex items-center font-clash text-xl font-semibold text-zinc-900 dark:text-[#F6F7FF] hover:text-[#BEF264] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] whitespace-nowrap overflow-hidden"
+        class="flex items-center h-10 font-clash text-xl font-semibold text-zinc-900 dark:text-[#F6F7FF] hover:text-[#BEF264] transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] whitespace-nowrap overflow-hidden"
         style:width="80px"
       >
         {scrolled ? 'ア' : 'アリツ'}
@@ -97,6 +95,11 @@
         {/each}
       </div>
 
+       <!-- Mobile Spotify Widget (Center) -->
+       <div class="flex md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+          <SpotifyBubble variant="transparent" />
+       </div>
+
       <!-- Right Actions -->
       <div 
         class="flex items-center justify-end"
@@ -105,15 +108,15 @@
         <!-- Theme Toggle (Desktop Only) -->
         <button
           onclick={toggleTheme}
-          class="hidden md:flex items-center justify-center rounded-full h-10 w-10 text-zinc-600 dark:text-[#A9A9BD] transition-colors duration-300 hover:text-zinc-900 dark:hover:text-[#F6F7FF] hover:bg-black/5 dark:hover:bg-white/5 -mr-2.5"
+          class="hidden md:flex items-center justify-center rounded-full h-10 w-10 text-zinc-600 dark:text-[#A9A9BD] transition-colors duration-300 hover:text-zinc-900 dark:hover:text-[#F6F7FF] hover:bg-black/5 dark:hover:bg-white/5 -mr-2"
           aria-label="Toggle Theme"
         >
           {#if isDark}
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9 Z" />
             </svg>
           {:else}
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="4" />
               <path d="M12 2v2" />
               <path d="M12 20v2" />
@@ -130,16 +133,16 @@
         <!-- Hamburger Menu (Mobile Only) -->
         <button
           onclick={() => mobileMenuOpen = !mobileMenuOpen}
-          class="flex md:hidden items-center justify-center rounded-full h-10 w-10 text-zinc-600 dark:text-[#A9A9BD] transition-colors duration-300 hover:text-zinc-900 dark:hover:text-[#F6F7FF] hover:bg-black/5 dark:hover:bg-white/5 -mr-2.5"
+          class="flex md:hidden items-center justify-center rounded-full h-10 w-10 text-zinc-600 dark:text-[#A9A9BD] transition-colors duration-300 hover:text-zinc-900 dark:hover:text-[#F6F7FF] hover:bg-black/5 dark:hover:bg-white/5 -mr-2"
           aria-label="Toggle Menu"
         >
           {#if mobileMenuOpen}
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M18 6 6 18"/>
               <path d="m6 6 12 12"/>
             </svg>
           {:else}
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <line x1="4" x2="20" y1="12" y2="12"/>
               <line x1="4" x2="20" y1="6" y2="6"/>
               <line x1="4" x2="20" y1="18" y2="18"/>
