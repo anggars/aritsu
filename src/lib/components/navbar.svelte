@@ -105,7 +105,7 @@
         <!-- Theme Toggle (Desktop Only) -->
         <button
           onclick={toggleTheme}
-          class="hidden md:flex items-center justify-center rounded-full h-10 w-10 text-zinc-600 dark:text-[#A9A9BD] transition-colors duration-300 hover:text-zinc-900 dark:hover:text-[#F6F7FF] hover:bg-black/5 dark:hover:bg-white/5"
+          class="hidden md:flex items-center justify-center rounded-full h-10 w-10 text-zinc-600 dark:text-[#A9A9BD] transition-colors duration-300 hover:text-zinc-900 dark:hover:text-[#F6F7FF] hover:bg-black/5 dark:hover:bg-white/5 -mr-2.5"
           aria-label="Toggle Theme"
         >
           {#if isDark}
@@ -130,7 +130,7 @@
         <!-- Hamburger Menu (Mobile Only) -->
         <button
           onclick={() => mobileMenuOpen = !mobileMenuOpen}
-          class="flex md:hidden items-center justify-center rounded-full h-10 w-10 text-zinc-600 dark:text-[#A9A9BD] transition-colors duration-300 hover:text-zinc-900 dark:hover:text-[#F6F7FF] hover:bg-black/5 dark:hover:bg-white/5"
+          class="flex md:hidden items-center justify-center rounded-full h-10 w-10 text-zinc-600 dark:text-[#A9A9BD] transition-colors duration-300 hover:text-zinc-900 dark:hover:text-[#F6F7FF] hover:bg-black/5 dark:hover:bg-white/5 -mr-2.5"
           aria-label="Toggle Menu"
         >
           {#if mobileMenuOpen}
@@ -154,14 +154,15 @@
       <div 
         transition:fade={{ duration: 300 }}
         class="fixed inset-0 bg-white/95 dark:bg-[#0B0B0D]/95 backdrop-blur-3xl z-[999] flex flex-col md:hidden"
-        onclick={() => mobileMenuOpen = false}
+        onclick={(e) => {
+          if (e.target === e.currentTarget) mobileMenuOpen = false;
+        }}
       >
         <!-- Menu Content -->
         <div 
           in:fly={{ x: 100, duration: 400, easing: cubicOut }}
           out:fly={{ x: 100, duration: 300, easing: cubicOut }}
-          class="flex flex-col h-full" 
-          onclick={(e) => e.stopPropagation()}
+          class="flex flex-col h-full"
         >
           <!-- Header with Close Button -->
           <div class="flex items-center justify-between px-6 pt-8 pb-4">

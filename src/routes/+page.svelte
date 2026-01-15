@@ -54,7 +54,7 @@
     <div class="flex flex-col-reverse md:flex-row justify-between items-start md:items-end mt-32 md:mt-40 gap-10 transform transition-all duration-700 delay-500 {loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
         
         <!-- Social Links -->
-        <ul class="flex flex-wrap gap-6 md:gap-8">
+        <ul class="flex flex-nowrap gap-3 md:gap-8 w-full md:w-auto">
             {#each [
                 { name: 'LinkedIn', url: 'https://linkedin.com/in/anggarnts' },
                 { name: 'GitHub', url: 'https://github.com/anggars' },
@@ -62,7 +62,7 @@
                 { name: 'Gmail', url: 'mailto:anggariantosudrajat@gmail.com' }
             ] as social}
                 <li>
-                    <a href={social.url} class="flex items-center gap-2 text-sm uppercase tracking-wider text-zinc-500 dark:text-[#A9A9BD] hover:text-black dark:hover:text-[#F6F7FF] transition-colors group">
+                    <a href={social.url} class="flex items-center gap-1.5 md:gap-2 text-[12px] md:text-sm uppercase tracking-wider text-zinc-500 dark:text-[#A9A9BD] hover:text-black dark:hover:text-[#F6F7FF] transition-colors group whitespace-nowrap">
                         {social.name}
                         <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                             <path d="M7 7h10v10" />
