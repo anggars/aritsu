@@ -5,49 +5,56 @@
       role: "System Analyst",
       period: "Jun 2025 - Aug 2025",
       type: "Internship",
-      description: "Analyzed system requirements and workflows for statistical data processing applications."
+      description: "Analyzed system requirements and workflows for statistical data processing applications.",
+      url: "https://tasikmalayakab.bps.go.id/id"
     },
     {
       company: "PT Sahabat Jaya Solusindo",
       role: "IT Support",
       period: "Feb 2022 - Apr 2022",
       type: "Full-time",
-      description: "Managed IT infrastructure including CCTV installation (IP/Analog), computer hardware troubleshooting, and LAN-WAN maintenance."
+      description: "Managed IT infrastructure including CCTV installation (IP/Analog), computer hardware troubleshooting, and LAN-WAN maintenance.",
+      url: "https://sahabatsolusindo.com/"
     },
     {
       company: "ServBridge Incorporated Pte Ltd",
       role: "Technical Engineer",
       period: "Oct 2021 - Dec 2021",
       type: "Freelance",
-      description: "Deployed to Google Data Center for physical layer installation, fiber optics cabling, and hardware setup."
+      description: "Deployed to Google Data Center for physical layer installation, fiber optics cabling, and hardware setup.",
+      url: "https://www.servbridgeinc.com/"
     },
     {
       company: "D'Health",
       role: "System Implementor",
       period: "Oct 2021",
       type: "Freelance",
-      description: "Implemented hospital information systems onsite (Morotai Island) including software installation and OS configuration."
+      description: "Implemented hospital information systems onsite (Morotai Island) including software installation and OS configuration.",
+      url: "https://www.dhealth.co.id/"
     },
     {
       company: "Padepokan Tujuh Sembilan",
       role: "Bootcamp Participant",
       period: "Sep 2020 - Dec 2020",
       type: "Internship",
-      description: "Intensive training in Java, Spring Boot, NetBeans, and PostgreSQL backend development."
+      description: "Intensive training in Java, Spring Boot, NetBeans, and PostgreSQL backend development.",
+      url: "https://tujuhsembilan.com/"
     },
     {
       company: "PT Berca Hardayaperkasa",
       role: "Desktop Support Engineer",
       period: "Nov 2019 - May 2020",
       type: "Full-time",
-      description: "Provided technical support for desktop environments, hardware troubleshooting, and network connectivity (LAN-WAN)."
+      description: "Provided technical support for desktop environments, hardware troubleshooting, and network connectivity (LAN-WAN).",
+      url: "https://www.berca.co.id/"
     },
     {
       company: "BLC Telkom",
       role: "Network Intern",
       period: "Jan 2018 - Apr 2018",
       type: "Internship",
-      description: "Handled Mikrotik configuration, Linux system administration, and network troubleshooting."
+      description: "Handled Mikrotik configuration, Linux system administration, and network troubleshooting.",
+      url: "https://lspdigital.id/tempat-uji-kompetensi/3/blc-telkom-klaten"
     }
   ];
 </script>
@@ -65,7 +72,11 @@
                 
                 <h3 class="font-clash text-2xl font-semibold text-zinc-900 dark:text-[#F6F7FF] mb-2">{exp.role}</h3>
                 <div class="flex items-center gap-3 mb-4 flex-wrap">
-                    <span class="text-lg text-zinc-500 dark:text-[#A9A9BD] font-medium">{exp.company}</span>
+                    {#if exp.url}
+                        <a href={exp.url} target="_blank" rel="noopener noreferrer" class="text-lg text-zinc-500 dark:text-[#A9A9BD] font-medium hover:text-lime-600 dark:hover:text-[#BEF264] transition-colors">{exp.company}</a>
+                    {:else}
+                        <span class="text-lg text-zinc-500 dark:text-[#A9A9BD] font-medium">{exp.company}</span>
+                    {/if}
                     <span class="hidden md:block w-1 h-1 rounded-full bg-zinc-300 dark:bg-zinc-700"></span>
                     <span class="text-sm font-medium uppercase tracking-wider text-lime-600 dark:text-[#BEF264]">{exp.period}</span>
                     <span class="px-2 py-0.5 rounded-full border border-zinc-200 dark:border-white/10 text-xs text-zinc-500 dark:text-[#A9A9BD] bg-zinc-100 dark:bg-[#1A1A1D]">{exp.type}</span>

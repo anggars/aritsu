@@ -55,15 +55,15 @@
 </script>
 
 <!-- Navbar Wrapper -->
-<div class="fixed left-0 right-0 top-0 z-100 w-full pt-4 pointer-events-none">
+<div class="fixed left-0 right-0 top-0 z-100 w-full pt-2 pointer-events-none">
   <!-- Inner Content (pointer-events-auto needed because wrapper is none) -->
-  <nav class="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 flex items-center h-16 pointer-events-auto">
+  <nav class="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 flex items-center h-14 pointer-events-auto">
     
     <!-- Dynamic Inner Container -->
     <div 
       class="relative flex items-center justify-between mx-auto transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] 
       {scrolled 
-        ? 'w-full md:w-[60%] bg-white/50 dark:bg-[#0B0B0D]/50 backdrop-blur-3xl rounded-full px-6 md:px-8 py-2.5 shadow-2xl shadow-black/5 dark:shadow-black/50 border border-black/5 dark:border-white/10 md:mt-4' 
+        ? 'w-full md:w-[60%] bg-white/50 dark:bg-[#0B0B0D]/50 backdrop-blur-3xl rounded-full px-6 md:px-8 py-2 shadow-2xl shadow-black/5 dark:shadow-black/50 border border-black/5 dark:border-white/10 md:mt-2' 
         : 'w-full bg-transparent'}"
     >
       
