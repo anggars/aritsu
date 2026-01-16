@@ -95,10 +95,6 @@
         {/each}
       </div>
 
-       <!-- Mobile Spotify Widget (Center) -->
-       <div class="flex md:hidden absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <SpotifyBubble variant="transparent" />
-       </div>
 
       <!-- Right Actions -->
       <div 

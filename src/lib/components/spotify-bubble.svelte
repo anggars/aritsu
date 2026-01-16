@@ -50,7 +50,7 @@
         href={track.url} 
         target="_blank" 
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 group {variant === 'default' ? 'ml-3 pl-3 pr-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-white/10 hover:bg-zinc-200 dark:hover:bg-white/20 border border-zinc-200 dark:border-white/5' : 'p-0 border-0'}"
+        class="inline-flex items-center gap-2 group {variant === 'default' ? 'pl-3 pr-3 py-1.5 rounded-xl bg-zinc-100 dark:bg-white/10 hover:bg-zinc-200 dark:hover:bg-white/20 border border-zinc-200 dark:border-white/5' : 'p-0 border-0'}"
     >
         <!-- Static Artwork -->
         <div class="relative w-7 h-7 shrink-0">

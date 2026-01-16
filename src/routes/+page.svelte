@@ -28,19 +28,11 @@
   <section class="min-h-screen flex flex-col justify-center px-6 md:px-12 lg:px-20 max-w-[1400px] mx-auto pt-32 pb-20">
     
     <!-- Greeting -->
-    <!-- Greeting -->
-    <div class="mb-8 flex flex-col md:flex-row md:items-center gap-3 md:gap-4 text-zinc-500 dark:text-[#A9A9BD] transform transition-all duration-700 delay-100 {loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
-      <div class="flex items-center gap-3">
-        <div class="animate-wave origin-[70%_70%] text-lime-600 dark:text-[#BEF264]">
-          <Hand size={20} strokeWidth={2.5} />
-        </div>
-        <p class="font-medium text-base tracking-wide">Hi, I'm Angga.</p>
+    <div class="mb-8 flex items-center gap-3 text-zinc-500 dark:text-[#A9A9BD] transform transition-all duration-700 delay-100 {loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
+      <div class="animate-wave origin-[70%_70%] text-lime-600 dark:text-[#BEF264]">
+        <Hand size={20} strokeWidth={2.5} />
       </div>
-      
-      <!-- Spotify Status Bubble -->
-      <div class="hidden md:block md:ml-0">
-         <SpotifyBubble />
-      </div>
+      <p class="font-medium text-base tracking-wide">Hi, I'm Angga.</p>
     </div>
 
     <!-- Big Headline -->
@@ -48,10 +40,17 @@
       I build <span class="text-lime-600 dark:text-[#BEF264]">exceptional web experiences</span> from concept to code.
     </h1>
 
-    <!-- Divider & Bio Row - Stacked on Mobile, Split on Desktop -->
+    <!-- Divider Row with Spotify Bubble overlapping the line -->
     <div class="mt-8 flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-4 w-full transform transition-all duration-700 delay-300 {loaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}">
-      <!-- Divider - Horizontal on mobile, flex-1 line on desktop -->
-      <div class="h-px bg-zinc-200 dark:bg-zinc-800 w-full md:w-auto md:flex-1"></div>
+      <!-- Left side: Spotify Bubble + Divider Line -->
+      <div class="relative flex items-center w-full md:flex-1">
+        <!-- Spotify Bubble - Shown on both mobile and desktop -->
+        <div class="z-10">
+          <SpotifyBubble />
+        </div>
+        <!-- Divider Line - stretches to fill remaining space -->
+        <div class="h-px bg-zinc-200 dark:bg-zinc-800 w-full md:flex-1"></div>
+      </div>
       
       <!-- Bio Paragraph - Full width on mobile, flex-1 on desktop -->
       <p class="w-full md:flex-1 text-pretty text-zinc-600 dark:text-[#A9A9BD] text-base leading-relaxed">
