@@ -5,8 +5,8 @@ export const GET = async () => {
     const response = await getNowPlaying();
 
     if (response.status === 204 || response.status > 400) {
-        console.log('Spotify API Error/Status:', response.status);
         if (response.status > 400) {
+             console.log('Spotify API Error/Status:', response.status);
              const text = await response.text();
              console.log('Spotify API Error Body:', text);
         }
