@@ -7,6 +7,8 @@
     { name: "TypeScript", slug: "typescript" },
     { name: "Next.js", slug: "nextdotjs", invert: true },
     { name: "Svelte", slug: "svelte" },
+    { name: "Dart", slug: "dart" },
+    { name: "Flutter", slug: "flutter" },
     { name: "Tailwind CSS", slug: "tailwindcss" },
     { name: "Shadcn UI", slug: "shadcnui", invert: true },
     { name: "Framer Motion", slug: "framer" },

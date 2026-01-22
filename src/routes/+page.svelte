@@ -1,5 +1,6 @@
 <script lang="ts">
   import TechStack from '$lib/components/tech-stack.svelte';
+  import GithubStats from '$lib/components/github-stats.svelte';
   import Experience from '$lib/components/experience.svelte';
   import TypeWriter from '$lib/components/type-writer.svelte';
   import Footer from '$lib/components/footer.svelte';
@@ -16,6 +17,8 @@
   ];
   
   let loaded = $state(false);
+
+  let { data } = $props();
 
   onMount(() => {
     loaded = true;
@@ -91,7 +94,10 @@
 
 
   <!-- TECH STACK (Moved to separate section visually if needed, but keeping for now as requested previously) -->
+  <!-- TECH STACK -->
   <TechStack />
+  
+  <GithubStats data={data.topLanguages} />
   
   <Experience />
   
