@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { page } from '$app/stores';
-  import resumeUrl from '$lib/resume.pdf';
   import { fly, fade, scale } from 'svelte/transition';
   import { cubicOut } from 'svelte/easing';
   
@@ -17,7 +16,7 @@
     { name: "Home", href: "/" },
     { name: "Projects", href: "/projects" },
     { name: "About", href: "/about" },
-    { name: "Resume", href: resumeUrl, target: "_blank" },
+    { name: "Resume", href: "/resume.pdf", target: "_blank" },
   ];
 
   // Lifecycle
