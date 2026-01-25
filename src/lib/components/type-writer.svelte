@@ -47,6 +47,6 @@
 	});
 </script>
 
-<span class="inline-flex items-center">
-	{currentRole}<span class="animate-pulse ml-0.5">|</span>
+<span>
+	{currentRole}<span class="animate-pulse ml-0.5 inline-block w-[2px] h-[1em] bg-current align-middle"></span>
 </span>

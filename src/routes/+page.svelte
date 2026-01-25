@@ -10,10 +10,10 @@
   
   // Bio descriptions for typing animation
   const bioPhrases = [
-    'Software engineer & designer who turns ideas into pixel-perfect digital experiences.',
-    'Full-stack developer crafting modern web applications with React, TypeScript, and everything in between.',
-    'Creative builder obsessed with user experience and clean code.',
-    'Problem solver who loves bringing ideas to life through code.'
+    'Informatics student exploring the world of code.',
+    'Learning full-stack development, one error at a time.',
+    "Not a pro, but I'm trying my best to build cool stuff.",
+    'Turning coffee into code (and bugs, mostly bugs).'
   ];
   
   let loaded = $state(false);

@@ -59,7 +59,7 @@
   ];
 </script>
 
-<section class="py-24 px-6 md:px-12 lg:px-20 max-w-[1400px] mx-auto">
+<section class="py-12 px-6 md:px-12 lg:px-20 max-w-[1400px] mx-auto">
     <h2 class="font-clash text-4xl md:text-5xl font-medium mb-16 text-zinc-900 dark:text-[#F6F7FF] transform transition-all duration-700">
         Work <span class="text-lime-600 dark:text-[#BEF264]">Experience</span>
     </h2>
