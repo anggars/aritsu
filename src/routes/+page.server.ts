@@ -1,9 +1,17 @@
 import { GITHUB_TOKEN } from '$env/static/private';
 
+
+
+export const config = {
+    isr: {
+        expiration: 600 // Cache for 10 minutes
+    }
+};
+
 export const load = async () => {
     let topLanguages: { name: string; percentage: number; color: string }[] = [];
 
-    // Default colors for common languages
+    // Fallback colors
     const languageColors: Record<string, string> = {
         TypeScript: '#3178c6',
         JavaScript: '#f1e05a',
@@ -21,57 +29,88 @@ export const load = async () => {
     };
 
     try {
-        const headers: Record<string, string> = {
-            'User-Agent': 'Aritsu-Portfolio'
-        };
-
-        if (GITHUB_TOKEN) {
-            headers['Authorization'] = `token ${GITHUB_TOKEN}`;
-        }
-
-        // Fetch repositories (limit to 100 most recent pushed)
-        const response = await fetch('https://api.github.com/user/repos?sort=pushed&per_page=100&type=owner', {
-            headers
-        });
-        
-        if (!response.ok) {
-            console.error('GitHub API error:', response.status);
+        if (!GITHUB_TOKEN) {
+            console.warn('GITHUB_TOKEN is missing. Returning empty stats.');
             return { topLanguages: [] };
         }
 
-        const repos = await response.json();
+        const query = `
+            query {
+                viewer {
+                    repositories(first: 100, ownerAffiliations: OWNER, orderBy: {field: PUSHED_AT, direction: DESC}, isFork: false) {
+                        nodes {
+                            name
+                            languages(first: 10, orderBy: {field: SIZE, direction: DESC}) {
+                                edges {
+                                    size
+                                    node {
+                                        color
+                                        name
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        `;
+
+        const response = await fetch('https://api.github.com/graphql', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `bearer ${GITHUB_TOKEN}`,
+                'User-Agent': 'Aritsu-Portfolio'
+            },
+            body: JSON.stringify({ query })
+        });
+
+        if (!response.ok) {
+            console.error('GitHub GraphQL API error:', response.status);
+            return { topLanguages: [] };
+        }
+
+        const result = await response.json();
+        
+        if (result.errors) {
+            console.error('GitHub GraphQL errors:', result.errors);
+            return { topLanguages: [] };
+        }
+
+        const repos = result.data.viewer.repositories.nodes;
         const languageStats: Record<string, number> = {};
+        const learnedColors: Record<string, string> = {};
         let totalBytes = 0;
 
-        // Fetch languages for each repo (parallel requests)
-        // using logic to avoid rate limits if no token is somewhat risky, but we rely on the token
-        const languagePromises = repos.map(async (repo: any) => {
-            if (repo.fork) return; // Skip forks
+        repos.forEach((repo: any) => {
+            if (repo.languages && repo.languages.edges) {
+                repo.languages.edges.forEach((edge: any) => {
+                    const langName = edge.node.name;
+                    const langColor = edge.node.color;
+                    let size = edge.size;
 
-            const langRes = await fetch(repo.languages_url, { headers });
-            if (langRes.ok) {
-                const langs = await langRes.json();
-                Object.entries(langs).forEach(([lang, bytes]) => {
+                    // Store color from API if available
+                    if (langColor) {
+                        learnedColors[langName] = langColor;
+                    }
+
                     // Jupyter Notebook files are huge JSONs, so we reduce their weight
                     // to represent actual code amount better (approx 10%)
-                    let weight = bytes as number;
-                    if (lang === 'Jupyter Notebook') {
-                        weight = weight * 0.1;
+                    if (langName === 'Jupyter Notebook') {
+                        size = size * 0.1;
                     }
-                    
-                    languageStats[lang] = (languageStats[lang] || 0) + weight;
-                    totalBytes += weight;
+
+                    languageStats[langName] = (languageStats[langName] || 0) + size;
+                    totalBytes += size;
                 });
             }
         });
-
-        await Promise.all(languagePromises);
 
         topLanguages = Object.entries(languageStats)
             .map(([name, bytes]) => ({
                 name,
                 percentage: Math.round((bytes / totalBytes) * 100),
-                color: languageColors[name] || '#888888'
+                color: learnedColors[name] || languageColors[name] || '#888888'
             }))
             .sort((a, b) => b.percentage - a.percentage)
             .filter(lang => lang.percentage > 0);

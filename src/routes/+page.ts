@@ -1,1 +1,2 @@
-export const prerender = true;
+// Prerender removed to allow dynamic updates
+
