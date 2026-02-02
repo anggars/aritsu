@@ -64,12 +64,11 @@
 
         <!-- Text Info -->
         <div class="flex flex-col max-w-[140px] overflow-visible ml-0.5 justify-center">
-            <div class="w-full overflow-hidden h-5 flex items-center">
+            <div class="w-full overflow-hidden h-5 flex items-center" style={track.title.length > 28 ? "container-type: inline-size; width: 140px" : ""}>
                  {#if track.title.length > 28}
                     {#key track.title}
                         <div class="inline-flex whitespace-nowrap animate-marquee">
-                            <span class="font-bold text-[11px] text-zinc-900 dark:text-white mr-6">{track.title}</span>
-                            <span class="font-bold text-[11px] text-zinc-900 dark:text-white mr-6">{track.title}</span>
+                            <span class="font-bold text-[11px] text-zinc-900 dark:text-white">{track.title}</span>
                         </div>
                     {/key}
                 {:else}
@@ -77,12 +76,11 @@
                 {/if}
             </div>
             
-            <div class="w-full overflow-hidden h-4 flex items-center">
+            <div class="w-full overflow-hidden h-4 flex items-center" style={track.artist.length > 28 ? "container-type: inline-size; width: 140px" : ""}>
                 {#if track.artist.length > 28}
                     {#key track.artist}
                         <div class="inline-flex whitespace-nowrap animate-marquee">
-                            <span class="text-[10px] text-zinc-500 dark:text-[#A9A9BD] mr-6">{track.artist}</span>
-                            <span class="text-[10px] text-zinc-500 dark:text-[#A9A9BD] mr-6">{track.artist}</span>
+                            <span class="text-[10px] text-zinc-500 dark:text-[#A9A9BD]">{track.artist}</span>
                         </div>
                     {/key}
                  {:else}
@@ -101,14 +99,15 @@
 {/if}
 
 <style>
-    @keyframes marquee {
-        0% { transform: translateX(0); }
-        100% { transform: translateX(-50%); }
+    @keyframes pingpong {
+        0%, 15% { transform: translateX(0); }
+        50%, 65% { transform: translateX(calc(-100% + 100cqw)); }
+        100% { transform: translateX(0); }
     }
     
     .animate-marquee {
         display: inline-block;
-        animation: marquee 20s linear infinite;
+        animation: pingpong 12s linear infinite;
         will-change: transform;
         padding-left: 0;
         /* Ensure width is enough to hold double content */
