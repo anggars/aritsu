@@ -39,3 +39,43 @@ export const getTopTracks = async () => {
     }
   });
 };
+
+export const getOnRepeatTracks = async () => {
+  const { access_token } = await getAccessToken();
+
+  // 1. Search user's playlists for "On Repeat"
+  const playlistsResponse = await fetch('https://api.spotify.com/v1/me/playlists?limit=50', {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  });
+
+  if (!playlistsResponse.ok) {
+    return getTopTracks();
+  }
+
+  const { items } = await playlistsResponse.json();
+  // On Repeat is a personalized playlist created by Spotify for the user
+  const playlist = items.find((p: any) => p.name === 'On Repeat');
+
+  if (!playlist) {
+    // If not found in the first 50 playlists, fall back to Top Tracks (short term)
+    // as it's the closest thing to On Repeat.
+    return getTopTracks();
+  }
+
+  return fetch(`https://api.spotify.com/v1/playlists/${playlist.id}/tracks?limit=10`, {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  });
+};
+
+export const getMe = async () => {
+  const { access_token } = await getAccessToken();
+  return fetch('https://api.spotify.com/v1/me', {
+    headers: {
+      Authorization: `Bearer ${access_token}`
+    }
+  });
+};

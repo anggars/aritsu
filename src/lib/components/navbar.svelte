@@ -150,20 +150,26 @@
     <!-- Mobile Menu Overlay -->
     {#if mobileMenuOpen}
       <div 
+        class="fixed inset-0 z-999 flex flex-col md:hidden"
         transition:fade={{ duration: 300 }}
-        class="fixed inset-0 bg-white/95 dark:bg-[#0B0B0D]/95 backdrop-blur-3xl z-[999] flex flex-col md:hidden"
-        onclick={(e) => {
-          if (e.target === e.currentTarget) mobileMenuOpen = false;
-        }}
       >
-        <!-- Menu Content -->
+        <!-- Backdrop Button (Handles closing) -->
+        <button 
+          type="button"
+          class="absolute inset-0 bg-white/95 dark:bg-[#0B0B0D]/95 backdrop-blur-3xl w-full h-full border-none cursor-default"
+          onclick={() => mobileMenuOpen = false}
+          aria-label="Close menu"
+        ></button>
+
+        <!-- Menu Content (Relative to be above backdrop) -->
         <div 
           in:fly={{ x: 100, duration: 400, easing: cubicOut }}
           out:fly={{ x: 100, duration: 300, easing: cubicOut }}
-          class="flex flex-col h-full"
+          class="relative flex flex-col h-full pointer-events-none"
         >
+          <!-- All interactive elements inside need pointer-events-auto -->
           <!-- Header with Close Button (Aligned with Main Navbar) -->
-          <div class="pt-2 w-full">
+          <div class="pt-2 w-full pointer-events-auto">
             <div class="mx-auto max-w-[1400px] px-6 md:px-12 lg:px-20 flex items-center h-14">
               <div class="relative flex items-center justify-between mx-auto transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] w-full {scrolled ? 'bg-white/50 dark:bg-[#0B0B0D]/50 backdrop-blur-3xl rounded-full px-6 py-2 shadow-2xl shadow-black/5 dark:shadow-black/50 border border-black/5 dark:border-white/10' : 'bg-transparent'}">
                 <a href="/" class="font-clash text-xl font-semibold text-zinc-900 dark:text-[#F6F7FF]">
@@ -184,7 +190,7 @@
           </div>
 
           <!-- Navigation Links (Centered) -->
-          <div class="flex-1 flex flex-col items-center justify-center gap-8 px-6">
+          <div class="flex-1 flex flex-col items-center justify-center gap-8 px-6 pointer-events-auto">
             {#each navItems as item, i}
               <a
                 href={item.href}
@@ -234,7 +240,7 @@
           <!-- Footer -->
           <div 
             in:fade={{ duration: 400, delay: 600 }}
-            class="px-6 pb-8 text-center"
+            class="px-6 pb-8 text-center pointer-events-auto"
           >
             <p class="text-sm text-zinc-500 dark:text-[#A9A9BD]">© {new Date().getFullYear()} Angga Rianto Sudrajat</p>
           </div>
